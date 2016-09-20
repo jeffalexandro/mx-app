@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 
+        http://messenger.com.br
+        https://ssl.gstatic.com 
+    'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Your app title -->
+    <title>My App</title>
+
+    <!-- This template defaults to the iOS CSS theme. To support both iOS and material design themes, see the Framework7 Tutorial at the link below:
+        http://www.idangero.us/framework7/tutorials/maintain-both-ios-and-material-themes-in-single-app.html
+     -->
+
+    <!-- Path to Framework7 Library CSS, Material Theme -->
+    <link rel="stylesheet" href="lib/framework7/css/framework7.material.min.css">
+    <!-- Path to Framework7 color related styles, Material Theme -->
+    <link rel="stylesheet" href="lib/framework7/css/framework7.material.colors.min.css">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="theme-indigo">
+    <!-- Status bar overlay for full screen mode (PhoneGap) -->
+    <div class="statusbar-overlay"></div>
+
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-cover layout-dark">        
+        <div class="list-block">
+            <div class="list-group">
+                <ul>
+                    <li>
+                        <a href="about.html" class="item-content item-link close-panel">
+                            <div class="item-media"><i class="icon icon-f7"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title">Link</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="open-login-screen item-content item-link close-panel">
+                            <div class="item-media"><i class="icon icon-back"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title">Logout</div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+                    
+              <!-- </li>
+              </hr>
+              <li><a href="about.html" class="item-content list-panel-all close-panel item-link">Outra página</a>
+                    <a href="#" class="open-login-screen list-button button button-raised">Logout</a>
+              </li>                  
+            </ul>
+        </div>         -->
+    </div>
+
+    <!-- Views -->
+    <div class="views">
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+            
+            <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+            <div class="pages navbar-through toolbar-through">
+                <!-- Page, "data-page" contains page name -->
+                <div data-page="index" class="page">
+
+                    <!-- Top Navbar-->
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+                            <div class="center">SGI</div>
+                            <div class="right">
+                                <!--
+                                  Right link contains only icon - additional "icon-only" class
+                                  Additional "open-panel" class tells app to open panel when we click on this link
+                                -->
+                                <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Scrollable page content -->
+                    <div class="page-content">
+                        <div class="content-block">
+                            
+                            <form id="my-form" class="list-block">
+                              <ul>
+                                <li>
+                                  <div class="item-content">
+                                    <div class="item-inner">
+                                      <div class="item-title label">Name</div>
+                                      <div class="item-input">
+                                        <input type="text" name="user_name" placeholder="Seu name">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                                <li>
+                                  <div class="item-content">
+                                    <div class="item-inner">
+                                      <div class="item-title label">E-mail</div>
+                                      <div class="item-input">
+                                        <input type="text" name="user_email" placeholder="Seu email">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                                <li>
+                                  <div class="item-content">
+                                    <div class="item-inner">
+                                      <div class="item-title label">Documento</div>
+                                      <div class="item-input">
+                                        <input type="text" name="doc" placeholder="Your name">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                                <li>
+                                  <div class="item-content">
+                                    <div class="item-inner">
+                                      <div class="item-title label">Perfil</div>
+                                      <div class="item-input">
+                                        <input type="text" name="perfil_system" placeholder="Your name">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                                <li>
+                                  <div class="item-content">
+                                    <div class="item-inner">
+                                      <div class="item-title label">Estado</div>
+                                      <div class="item-input">
+                                        <input type="text" name="uf" placeholder="Seu Estado">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                                
+                                
+                              </ul>
+                            </form>
+                            <!-- Link to another page -->                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Bottom Toolbar-->
+            <div class="toolbar">
+                <div class="toolbar-inner">
+                    <!-- Toolbar links -->
+                    <a href="#" class="link">Link 1</a>
+                    <a href="#" class="link">Link 2</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="login-screen modal-in">
+        <div class="view">
+          <div class="page">
+            <!-- Top Navbar-->
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+                    <div class="center">SGI</div>                    
+                </div>
+            </div>
+            <div class="page-content login-screen-content">
+              <div class="login-screen-title">Login</div>
+              <form action="http://messenger.com.br/app/controller.php" method="GET" class="ajax-submit" id="login_form">
+                <div class="list-block">
+                  <ul>
+                    <li class="item-content" data-for="email_login">
+                      <div class="item-inner">
+                        <div class="item-title label">E-mail</div>
+                        <div class="item-input">
+                          <input type="text" name="email_login" id="email_login" placeholder="Seu e-mail" required="" />
+                        </div>
+                      </div>
+                    </li>
+                    <li class="item-content" data-for="password_login">
+                      <div class="item-inner">
+                        <div class="item-title label" >Senha</div>
+                        <div class="item-input">
+                          <input type="password" name="password_login" id="password_login" placeholder="Sua senha" required="" />
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="list-block">
+                  <ul>
+                    <li><input type="submit" id="login_submit" value="Acessar" class="item-link list-button button button-fill button-raised" /></li>
+                  </ul>
+                  <div class="list-block-label">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <!-- <p><a href="#" class="close-login-screen">Close Login Screen</a></p> -->
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
+    <script type="text/javascript" src="js/my-app.js"></script>
+</body>
+
+</html>
