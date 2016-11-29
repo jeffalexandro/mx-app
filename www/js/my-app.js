@@ -21,7 +21,7 @@ $$(document).on('deviceready', function() {
     // On click in area label next to input, focus in imput into this area
     $$('.item-content').click(function () {
         $$("#"+$$(this).data('for')).focus();
-    })
+    });
 
     //console.log(myApp.getCurrentView());
     // $$("#login_submit").click(function (e) {
@@ -54,6 +54,7 @@ $$(document).on('deviceready', function() {
         }
         else{
             myApp.alert(data.error_msg, 'Ops!');
+            myApp.closeModal('.login-screen');
 
         }
         // do something with response data
@@ -73,7 +74,7 @@ $$(document).on("backbutton", function () {
                 //navigator.app.exitApp();
                 navigator.app.backHistory()
             },
-             function () {
+            function () {
                 return false;
             }
         );        
