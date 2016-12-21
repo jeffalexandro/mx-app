@@ -38,21 +38,22 @@ $$(document).on('deviceready', function() {
         		var data = JSON.parse(e.detail.data); // Ajax response from action file
 
 		if(data.sucesso == 1) {
-        			myApp.formFromJSON('#my-form', data.info);
+        			//myApp.formFromJSON('#my-form', data.info);
+
+        			$$("#user_name"),html(data.info.user_name);
+
         			myApp.closeModal('.login-screen');
         		}
         		else{
         			myApp.alert(data.error_msg, 'Ops!');
         			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
-		        			console.log('file system open: ' + fs.name);
-		        			fs.root.getFile("newPersistentFile.txt", { create: true, exclusive: false }, function (fileEntry) {
-
+	        			console.log('file system open: ' + fs.name);
+	        			fs.root.getFile("newPersistentFile.txt", { create: true, exclusive: false }, function (fileEntry) {
 		        			console.log("fileEntry is file?" + fileEntry.isFile.toString());
 		                        	// fileEntry.name == 'someFile.txt'
 		                        	// fileEntry.fullPath == '/someFile.txt'
 		                        	writeFile(fileEntry, "Teste123");
 		                        	//writeFile(fileEntry, false);
-
 		                    	}, function(){
 		        			console.log("Erro on create file")
 		                    	});
