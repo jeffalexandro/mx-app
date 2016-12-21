@@ -10,12 +10,12 @@
    See https://github.com/apache/cordova-plugin-statusbar
 */
 .page {
-	background-image: url(../img/px2.jpg);    
+	background-image: url(../img/px2.jpg);
 }
 .page-content {
-	background-image: url(../img/bg_off.png);
-  background-color: rgba(0,64,116,0.75);
-  color: #FFF;
+    background-image: url(../img/bg_off.png);
+    background-color: rgba(0,64,116,0.75);
+    color: #FFF;
 }
 .list-block .floating-label, .list-block .label {
 	color: #FFF;
@@ -31,11 +31,19 @@
 	line-height: 40px;
 }
 
-
 .statusbar-overlay {
     background: #000000;
 }
 
-.content-block, .login-screen-title{
-	margin-top: 80px !important;
+.content-master, .login-screen-title{
+	margin-top: 100px !important;
+}
+
+.panels-3d {
+  background-color: #212121;
+}
+
+.content-master {
+  background-color: #EEE;
+  color: #111;
 }
