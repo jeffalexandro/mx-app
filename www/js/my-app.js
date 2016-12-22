@@ -40,7 +40,7 @@ $$(document).on('deviceready', function() {
 		if(data.sucesso == 1) {
         			//myApp.formFromJSON('#my-form', data.info);
 
-        			$$("#user_name"),html(data.info.user_name);
+        			$$("#user_name").html(data.info.user_name);
 
         			myApp.closeModal('.login-screen');
         		}
