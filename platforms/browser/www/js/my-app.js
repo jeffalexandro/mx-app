@@ -41,34 +41,35 @@ $$(document).on('deviceready', function() {
         		if(data.sucesso == 1) {
         			//myApp.formFromJSON('#my-form', data.info);
 
-        			$$("#user_name").html(data.info.user_name);
-
+        			$$("#user_name").html(data.info.user_name);        			
         			myApp.closeModal('.login-screen');
         		}
         		else{
         			myApp.alert(data.error_msg, 'Ops!');
-        			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
-        				console.log('file system open: ' + fs.name);
-        				fs.root.getFile("newPersistentFile.txt", { create: true, exclusive: false }, function (fileEntry) {
-        					console.log("fileEntry is file?" + fileEntry.isFile.toString());
-		                        	// fileEntry.name == 'someFile.txt'
-		                        	// fileEntry.fullPath == '/someFile.txt'
-		                        	writeFile(fileEntry, "Teste123");
-		                        	//writeFile(fileEntry, false);
-		                        }, function(){
-		                        	console.log("Erro on create file")
-		                        });
+        			// window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
+        			// 	console.log('file system open: ' + fs.name);
+        			// 	fs.root.getFile("newPersistentFile.txt", { create: true, exclusive: false }, function (fileEntry) {
+        			// 		console.log("fileEntry is file?" + fileEntry.isFile.toString());
+		         //                	// fileEntry.name == 'someFile.txt'
+		         //                	// fileEntry.fullPath == '/someFile.txt'
+		         //                	writeFile(fileEntry, "Teste123");
+		         //                	//writeFile(fileEntry, false);
+		         //                }, function(){
+		         //                	console.log("Erro on create file")
+		         //                });
 
-        			}, function(){
-        				console.log("Erro ao carregar plugin")
-        			});
+        			// }, function(){
+        			// 	console.log("Erro ao carregar plugin")
+        			// });
+
+        			myApp.closeModal('.login-screen');
         		}
         	// do something with response data
         });
 
    	 $$('.ajax-submit').on('submitError', function (e) {
    	 	myApp.alert("Erro durante requisição ao servidor", 'Ops!');
-   	 	//myApp.closeModal('.login-screen');
+   	 	myApp.closeModal('.login-screen');
    	 });
 
    	 $$('form.ajax-submit').on('form:success', function (e) {
@@ -112,6 +113,7 @@ myApp.onPageInit('about', function (page) {
 });
 
 
+
 myApp.onPageInit('listar_entrega_coleta', function (page) {
 
 	$$.getJSON (
@@ -129,17 +131,53 @@ myApp.onPageInit('listar_entrega_coleta', function (page) {
 				$$.each(value.awb_lista, function (index_j, value_j) {
 
 					html +='<li class="card accordion-item"> <a href="#" class="item-content item-link">\
-						 	<div class="card-header item-inner"><strong>'+value_j.awb+'</strong>'+value_j.nome+'</div></a>\
+						 	<div class="card-header item-inner">\
+						 		<div class="list-block">\
+		      						<ul>\
+		      							<li>\
+		      								<div class="row">\
+		      									<div class="col-60">\
+		      										<strong>'+value_j.nome_contato+'</strong>\
+		      									</div>\
+		      									<div class="col-40">\
+				      								<div class="chip">\
+		    											<div class="chip-label">'+value_j.nome+'</div>\
+		  											</div>\
+	  											</div>\
+	  										</div>\
+		      							</li>\
+		      							<li>'+value_j.cep+' - '+value_j.rua+' nº '+value_j.numero+'</li>\
+		      						</ul>\
+		      					</div>\
+						 	</div></a>\
 					  		<div class="card-content accordion-item-content">\
 					    			<div class="card-content-inner">\
-					    				<p>Rota: '+value_j.NOME+'</p>\
-					    				<p>CEP: '+value_j.cep+'</p>\
-					    				<p>Endereço: '+value_j.rua+', '+value_j.numero+', '+value_j.complemento+'</p>\
-					    				<p>Nome Contato: '+value_j.nome_contato+'</p>\
-					    				<p>Tel Contato: '+value_j.telefone_contato+'</p>\
+					    				<p>Código AWB: <strong>'+value_j.awb+'</strong></p>\
+					    				<p>Rota: <strong>'+value_j.NOME+'</strong></p>\
+					    				<p>CEP: <strong>'+value_j.cep+'</strong></p>\
+					    				<p>Endereço: <strong>'+value_j.rua+' nº '+value_j.numero+'</strong></p>\
+					    				<p>Bairro: <strong>'+value_j.bairro+'</strong></p>\
+					    				<p>Cidade: <strong>'+value_j.cidade+'</strong></p>\
+					    				<p>Estado: <strong>'+value_j.estado+'</strong></p>\
+					    				<p>Complemento: <strong>'+value_j.complemento+'</strong></p>\
+					    				<p>Nome Contato: <strong>'+value_j.nome_contato+'</strong></p>\
+					    				<p>Tel Contato: <strong>'+value_j.telefone_contato+'</strong></p>\
 					    			</div>\
 					  		</div>\
 						</div>';
+
+					// html +='<li class="card accordion-item"> <a href="#" class="item-content item-link">\
+					// 	 	<div class="card-header item-inner"><strong>'+value_j.awb+'</strong>'+value_j.nome+'</div></a>\
+					//   		<div class="card-content accordion-item-content">\
+					//     			<div class="card-content-inner">\
+					//     				<p>Rota: '+value_j.NOME+'</p>\
+					//     				<p>CEP: '+value_j.cep+'</p>\
+					//     				<p>Endereço: '+value_j.rua+', '+value_j.numero+', '+value_j.complemento+'</p>\
+					//     				<p>Nome Contato: '+value_j.nome_contato+'</p>\
+					//     				<p>Tel Contato: '+value_j.telefone_contato+'</p>\
+					//     			</div>\
+					//   		</div>\
+					// 	</div>';
 
 					// html += '<li class="accordion-item"><a href="#" class="item-content item-link">\
 					// 	<div class="item-inner">\
