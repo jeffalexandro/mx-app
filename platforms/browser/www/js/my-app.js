@@ -116,13 +116,7 @@ myApp.onPageInit('about', function (page) {
 
 
 myApp.onPageInit('listar_entrega_coleta', function (page) {
-	init_entrega_coleta();
-});
-
-
-
-function init_entrega_coleta() {
-
+	
 	$$.getJSON (
 		'http://messenger.com.br/app/controller.php',
 		{ request_key: 'get_lista_coleta_entrega' },
@@ -324,4 +318,7 @@ function init_entrega_coleta() {
 	    	});
 		});		
 	});
-}
+	
+});
+
+	
