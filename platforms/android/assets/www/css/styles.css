@@ -22,7 +22,7 @@
     background-color: rgba(0,64,116,0.75);
     color: #FFF;
 }
-.list-block .floating-label, .list-block .label {
+.login-screen-content .list-block .floating-label, .login-screen-content .list-block .label {
 	color: #FFF;
 	width: 20%;
 }
@@ -51,4 +51,19 @@
 .content-master {
   background-color: #EEE;
   color: #111;
+}
+
+.small-text {
+  font-size: 12px;
+}
+
+
+.card_green {
+  background-color: #dcefde;
+}
+.card_red {
+  background-color: #fcd2cf;
+}
+.card_blue {
+  background-color: #d9ddf2; 
 }
