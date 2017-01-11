@@ -46,7 +46,7 @@ $$(document).on('deviceready', function() {
         			myApp.closeModal('.login-screen');
         		}
         		else{
-        			myApp.alert(data.error_msg, 'Ops!');
+        			myApp.alert(data.error_msg, 'Usuário ou senha incorretos!');
         			// window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
         			// 	console.log('file system open: ' + fs.name);
         			// 	fs.root.getFile("newPersistentFile.txt", { create: true, exclusive: false }, function (fileEntry) {
@@ -63,7 +63,7 @@ $$(document).on('deviceready', function() {
         			// 	console.log("Erro ao carregar plugin")
         			// });
 
-        			myApp.closeModal('.login-screen');
+        			//myApp.closeModal('.login-screen');
         		}
         	// do something with response data
         });
@@ -145,6 +145,14 @@ myApp.onPageInit('listar_entrega_coleta', function (page) {
 				var btn_init = '';	
 			}
 
+
+			if(value_j.nome == "Coleta") {
+				ranger = <div class="chip">
+<div class="chip-media bg-blue"><i class="icon material-icons">today</i></div>
+<div class="chip-label">Set Date</div>
+</div>
+			}
+
 			html +='<li class="card '+card_color+' accordion-item"> <a href="#" class="item-content item-link">\
 				 	<div class="card-header item-inner">\
 				 		<div class="list-block small-text">\
@@ -165,11 +173,8 @@ myApp.onPageInit('listar_entrega_coleta', function (page) {
 				 	</div></a>\
 			  		<div class="card-content accordion-item-content">\
 		    			<div class="card-content-inner">\
-		    				<p class="buttons-row">\
-							  	'+btn_init+'\
-							</p>\
+		    				<h3>Informações</h3><hr/>\
 		    				<p>Código AWB: <strong>'+value_j.awb+'</strong></p>\
-		    				<p>Rota: <strong>'+value_j.NOME+'</strong></p>\
 		    				<p>CEP: <strong>'+value_j.cep+'</strong></p>\
 		    				<p>Endereço: <strong>'+value_j.rua+' nº '+value_j.numero+'</strong></p>\
 		    				<p>Bairro: <strong>'+value_j.bairro+'</strong></p>\
@@ -178,9 +183,23 @@ myApp.onPageInit('listar_entrega_coleta', function (page) {
 		    				<p>Complemento: <strong>'+value_j.complemento+'</strong></p>\
 		    				<p>Nome Contato: <strong>'+value_j.nome_contato+'</strong></p>\
 		    				<p>Tel Contato: <strong>'+value_j.telefone_contato+'</strong></p>\
+		    				<hr/>';
+
+		    				// $$.each(data.awb_lista.mercadorias, function (index_m, value_m) {
+		    					html +='<p>Descrição: <strong>'+value_j.mercadorias[0].descricao+'</strong></p>\
+		    							<p>Peso: <strong>'+value_j.peso+'</strong></p>';
+		    				// });
+
+		    				
+		    		html +='<hr/>\
+		    				<p class="buttons-row">\
+							  	'+btn_init+'\
+							</p>\
 		    			</div>\
 			  		</div>\
-				</div>';								
+				</div>';
+
+				console.log(value_j.status);							
 		});
 
 		$$("#accordion_listar").html(html);
