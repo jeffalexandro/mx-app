@@ -67,3 +67,7 @@
 .card_blue {
   background-color: #d9ddf2; 
 }
+
+.chip-media > .f7-icons {
+  font-size: 18px;
+}
