@@ -1,3 +1,4 @@
+
 // Initialize app
 var myApp = new Framework7({
 	material: true,
@@ -168,10 +169,6 @@ myApp.onPageInit('listar_entrega_coleta', function (page) {
       									<div class="col-60">\
       										<strong>'+value_j.nome_empresa+'</strong>\
       									</div>\
-	      								<div class="chip col-40">\
-											<div class="chip-label">'+value_j.nome+'</div>\
-											</div>\
-										</div>\
       							</li>\
       							<li>'+value_j.cep+' - '+value_j.rua+' nº '+value_j.numero+'</li>\
       							<li>'+ranger+'</li>\
@@ -204,9 +201,7 @@ myApp.onPageInit('listar_entrega_coleta', function (page) {
 							</p>\
 		    			</div>\
 			  		</div>\
-				</div>';
-
-				console.log(value_j.status);							
+				</div>';				
 		});
 
 		$$("#accordion_listar").html(html);
@@ -343,8 +338,30 @@ myApp.onPageInit('listar_entrega_coleta', function (page) {
 				);
 	    	});
 		});		
-	});
-	
+	});		
+
 });
+	
+
+function alertFunc() {
+
+	$$.getJSON ('http://messenger.com.br/app/notificacao.php', 
+	{ user_id: '35' },
+	function (data) {
+		if(data.success){
+			myApp.alert('', "Sua rota foi alterada!", function () { 
+				mainView.router.loadPage("listar_entrega_coleta.html"); 
+				mainView.router.reloadPage("listar_entrega_coleta.html"); 
+				
+				// console.log(myApp.getCurrentView());
+			});
+		}
+		else {
+			return;
+		}
+
+	});
 
 	
+}
+setInterval(alertFunc, 5000);
