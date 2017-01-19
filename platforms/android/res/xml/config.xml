@@ -19,12 +19,12 @@
     </feature>
     <preference name="android-minSdkVersion" value="14" />
     <allow-intent href="market:*" />
-    <name>Hello World</name>
+    <name>Messenger Express</name>
     <description>
-        A basic Framework7 template for PhoneGap.
+        Gestão e controle de entregas e coletas
     </description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+        Messenger Express
     </author>
     <content src="index.html" />
     <access origin="*" />
