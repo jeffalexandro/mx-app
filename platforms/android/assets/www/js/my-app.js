@@ -26,67 +26,64 @@ var mainView = myApp.addView('.view-main', {
 
 localStorage.setItem("user_id", 0);
 
-
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function() {
 
+	// window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);	
 	console.log("Device is ready!");
 
-	 // On click in area label next to input, focus in imput into this area
-	 $$('.item-content').click(function () {
+	// On click in area label next to input, focus in imput into this area
+	$$('.item-content').click(function () {
 	 	$$("#"+$$(this).data('for')).focus();
-	 });
+	});	
 
+   	// ON LOGIN SUBMIT ------------------------------------------------------------------------------------------------------------------------
+   	$$('#login_form').on('submitted', function (e) {
+		var xhr = e.detail.xhr; // actual XHR object
+		var data = JSON.parse(e.detail.data); // Ajax response from action file
 
-   	 // ON LOGIN SUBMIT ------------------------------------------------------------------------------------------------------------------------
-   	 $$('#login_form').on('submitted', function (e) {
-        		var xhr = e.detail.xhr; // actual XHR object
-        		var data = JSON.parse(e.detail.data); // Ajax response from action file
+		if(data.sucesso == 1) {
+			//myApp.formFromJSON('#my-form', data.info);
 
-        		if(data.sucesso == 1) {
-        			//myApp.formFromJSON('#my-form', data.info);
+			$$("#user_name").html(data.info.user_name);
+			localStorage.setItem("user_id", data.info.user_id);
+		
+			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, writeFSLogin, fail);
 
-        			$$("#user_name").html(data.info.user_name);
-        			localStorage.setItem("user_id", data.info.user_id);
+			myApp.closeModal('.login-screen');
+		}
+		else{
+			myApp.alert(data.error_msg, 'Usuário ou senha incorretos!');        			        			
 
-        			myApp.closeModal('.login-screen');
-        		}
-        		else{
-        			myApp.alert(data.error_msg, 'Usuário ou senha incorretos!');        			
-        			// window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
-        			// 	console.log('file system open: ' + fs.name);
-        			// 	fs.root.getFile("newPersistentFile.txt", { create: true, exclusive: false }, function (fileEntry) {
-        			// 		console.log("fileEntry is file?" + fileEntry.isFile.toString());
-		         //                	// fileEntry.name == 'someFile.txt'
-		         //                	// fileEntry.fullPath == '/someFile.txt'
-		         //                	writeFile(fileEntry, "Teste123");
-		         //                	//writeFile(fileEntry, false);
-		         //                }, function(){
-		         //                	console.log("Erro on create file")
-		         //                });
+			// myApp.closeModal('.login-screen');
+		}
+    	// do something with response data
+    });
 
-        			// }, function(){
-        			// 	console.log("Erro ao carregar plugin")
-        			// });
-
-        			//myApp.closeModal('.login-screen');
-        		}
-        	// do something with response data
-        });
-
-   	 $$('.ajax-submit').on('submitError', function (e) {
+   	$$('.ajax-submit').on('submitError', function (e) {
    	 	myApp.alert("Erro durante requisição ao servidor", 'Ops!');
    	 	myApp.closeModal('.login-screen');
-   	 });
+   	});
 
-   	 $$('form.ajax-submit').on('form:success', function (e) {
-      		var xhr = e.detail.xhr; // actual XHR object
-      		var data = e.detail.data; // Ajax response from action file
-      		// do something with response data
-      	});
+   	$$('form.ajax-submit').on('form:success', function (e) {
+  		var xhr = e.detail.xhr; // actual XHR object
+  		var data = e.detail.data; // Ajax response from action file
+  		// do something with response data
+  	});
+	// ON LOGIN SUBMIT FINISH
 
-    	// ON LOGIN SUBMIT FINISH ------------------------------------------------------------------------------------------------------------------------
-    });
+
+	// ON LOGOUT
+	$$("#logout").click( function() {
+
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, writeFSLogout, fail);
+	});
+	// ON LOGOUT FINISH
+
+// on ready finish
+});
+
+	
 
 
 // ON BACKBUTTON CLICKED ------------------------------------------------------------------------------------------------------------------------
@@ -308,6 +305,8 @@ myApp.onPageInit('listar_entrega_coleta', function (page) {
 
 			$$('.cod_disp_coleta_entrega').on('click', function (e) {	
 				
+				console.log()
+
 				var id = this.id.substring(24);
 
 				var form = '<div class="list-block">\
@@ -335,7 +334,29 @@ myApp.onPageInit('listar_entrega_coleta', function (page) {
 						},
 						function (data) {
 							if(data.sucesso){
-								myApp.alert('', 'Código de Pendência informado com sucesso', function () { mainView.router.refreshPage(); });	
+
+								// window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
+			     //    				console.log('file system open: ' + fs.name);
+			     //    				fs.root.getFile("newPersistentFile.txt", { create: true, exclusive: false }, function (fileEntry) {
+			     //    					console.log("fileEntry is file?" + fileEntry.isFile.toString());        					        					
+			     //    					readFile(fileEntry);
+				    //                     	// fileEntry.name == 'someFile.txt'
+				    //                     	// fileEntry.fullPath == '/someFile.txt'
+			     //                    	writeFile(fileEntry, '{"username" : "Marcos Oliveira", "user_id" : "35", "is_login" : 1, "email": "marcos.oliveira@messenger.com.br", "remessas":{}, "cod_pend": { {"id" : "'+id+'", "descicao": "'+$$("#cod_disp_entrega_coleta_descricao").val()+'"}, } }                                                                                          ');
+				    //                     	//writeFile(fileEntry, false);
+				    //                 }, function(){
+				    //                     	console.log("Erro on create file")
+				    //                 });
+
+			     //    			}, function(){
+			     //    				console.log("Erro ao carregar plugin")
+			     //    			});
+
+								myApp.alert('', 'Código de Pendência informado com sucesso', function () { 
+									
+									mainView.router.refreshPage(); 
+								});									
+
 							}
 							else{
 								myApp.alert('', 'Ocorreu um erro ao salvar informações, tente novamente.');	
