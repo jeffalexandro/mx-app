@@ -148,9 +148,7 @@ myApp.onPageInit('listar_entrega_coleta', function (page) {
 	//checkConnection();
 	//console.log(navigator.connection.type);	
 
-	if(navigator.connection.type == "NONE") {
-
-		myApp.alert("taqui");
+	if(navigator.connection.type == "none") {		
 
 		_init_tarefas(fileObj);
 	}
