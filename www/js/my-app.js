@@ -30,7 +30,7 @@ tarefasLista = {};
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function() {
 
-	checkConnection();
+	myApp.alert(navigator.connection.type);
 
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail); 
 
@@ -146,9 +146,11 @@ myApp.onPageInit('listar_entrega_coleta', function (page) {
 	// if(localStorage.user_id == 35)
 	// {
 	//checkConnection();
-	console.log(navigator.connection.type);
+	//console.log(navigator.connection.type);	
 
 	if(navigator.connection.type == "NONE") {
+
+		myApp.alert("taqui");
 
 		_init_tarefas(fileObj);
 	}
@@ -200,7 +202,7 @@ function alertFunc() {
 function _init_tarefas(data) {
 	var html = "";
 
-	fileObj.lista_tarefas = data.awb_lista;
+	fileObj.awb_lista = data.awb_lista;
 
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, writeFSListaTarefas, fail);
 
