@@ -146,6 +146,7 @@ myApp.onPageInit('listar_entrega_coleta', function (page) {
 	// if(localStorage.user_id == 35)
 	// {
 	//checkConnection();
+	console.log(navigator.connection.type);
 
 	if(navigator.connection.type == "NONE") {
 
@@ -158,7 +159,10 @@ myApp.onPageInit('listar_entrega_coleta', function (page) {
 			{ request_key: 'get_lista_coleta_entrega' },
 			function (data) {
 				_init_tarefas(data);
-			}			
+			},
+			function () {
+				_init_tarefas(fileObj);			
+			}
 		);	
 	}
 
