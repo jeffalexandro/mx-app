@@ -142,6 +142,34 @@ function WriteFileEntryLogout(fileEntry) {
 }
 
 
+
+// Lista de tarefas
+function writeFSListaTarefas(fileSystem) {
+    fileSystem.root.getFile("arquivo_teste.txt", {create: true, exclusive: false}, WriteFileEntryListaTarefas, fail);
+}
+
+function WriteFileEntryListaTarefas(fileEntry) {
+    fileEntry.createWriter(
+        function(writer) {
+            
+            json = JSON.stringify(fileObj);
+
+            writer.onwriteend = function(evt) {
+                writer.truncate(0);  
+                writer.onwriteend = function(evt) {
+                    writer.write(json);
+                    writer.onwriteend = function(evt){
+                        console.log("Write Success");
+                    }
+                };
+            };
+            writer.write(json);
+        }
+        , fail
+    );
+}
+
+
 // Commum
 function fail(evt) {
     console.log(evt.target.error.code);

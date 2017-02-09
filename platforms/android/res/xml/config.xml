@@ -20,6 +20,9 @@
     <feature name="Geolocation">
         <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
     </feature>
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+    </feature>
     <preference name="android-minSdkVersion" value="14" />
     <allow-intent href="market:*" />
     <preference name="AndroidPersistentFileLocation" value="Internal" />
