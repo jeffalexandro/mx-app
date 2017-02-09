@@ -4,32 +4,15 @@
 fileText = "";
 fileObj = {};
 
-document.addEventListener("deviceready", onDeviceReady, false);
+//document.addEventListener("deviceready", onDeviceReady, false);
 
 // Cordova is ready
 //
-function onDeviceReady() {
+// function onDeviceReady() {    
 
-    // Start FileObj
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail); 
-
-    setTimeout(
-        function(){ 
-            
-            if(fileObj.logged_in == 1)
-            {
-                $$("#user_name").html(fileObj.name);
-                
-                $$("#email_login").val(fileObj.email);
-                $$("#password_login").val(fileObj.password);
-                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, writeFSLogin, fail);
-
-                myApp.closeModal('.login-screen');
-            }          
-        }
-        , 1000
-    );
-}
+//     // Start FileObj
+    
+// }
 
 
 // READ TEXT --------------------------------------------------------------------------------------------

@@ -10,7 +10,7 @@ var myApp = new Framework7({
 	onAjaxComplete: function (xhr) {
 		myApp.hideIndicator();
 	},
-	modalButtonCancel: 'Calcelar'
+	modalButtonCancel: 'Cancelar'
 });
 
 // If we need to use custom DOM library, let's save it to $$ variable:
@@ -29,8 +29,30 @@ localStorage.setItem("user_id", 0);
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function() {
 
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail); 
+
+    setTimeout(
+        function(){ 
+            
+            if(fileObj.logged_in == 1)
+            {
+                $$("#user_name").html(fileObj.name);
+                
+                $$("#email_login").val(fileObj.email);
+                $$("#password_login").val(fileObj.password);
+                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, writeFSLogin, fail);
+
+                myApp.closeModal('.login-screen');
+            }          
+        }
+        , 1000
+    );
+
+
+	
 	// window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);	
 	console.log("Device is ready!");
+	myApp.alert("Device is ready!");
 
 	// On click in area label next to input, focus in imput into this area
 	$$('.item-content').click(function () {
@@ -41,6 +63,8 @@ $$(document).on('deviceready', function() {
    	$$('#login_form').on('submitted', function (e) {
 		var xhr = e.detail.xhr; // actual XHR object
 		var data = JSON.parse(e.detail.data); // Ajax response from action file
+
+		myApp.alert("to aqui", 'Ops!');
 
 		if(data.sucesso == 1) {
 			//myApp.formFromJSON('#my-form', data.info);
