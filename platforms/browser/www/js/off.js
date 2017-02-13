@@ -25,7 +25,7 @@ function gotFileEntry(fileEntry) {
 }
 
 function gotFile(file){
-    readDataUrl(file);
+    //readDataUrl(file);
     readAsText(file);
 }
 
@@ -123,6 +123,7 @@ function WriteFileEntryLogout(fileEntry) {
             fileObj.password = "";
             fileObj.name = "";
             fileObj.logged_in = 0;
+            //fileObj = {};
 
             json = JSON.stringify(fileObj);
 
@@ -144,11 +145,11 @@ function WriteFileEntryLogout(fileEntry) {
 
 
 // Lista de tarefas
-function writeFSListaTarefas(fileSystem) {
-    fileSystem.root.getFile("arquivo_teste.txt", {create: true, exclusive: false}, WriteFileEntryListaTarefas, fail);
+function writeFSDefault(fileSystem) {
+    fileSystem.root.getFile("arquivo_teste.txt", {create: true, exclusive: false}, WriteFileEntryDefault, fail);
 }
 
-function WriteFileEntryListaTarefas(fileEntry) {
+function WriteFileEntryDefault(fileEntry) {
     fileEntry.createWriter(
         function(writer) {
             
