@@ -330,7 +330,7 @@ function _init_tarefas(data) {
 	$$('.pod_coleta_entrega').on('click', function (e) {
 		
 		var id = this.id.substring(19);
-		var ordem_id = this.data('ordem');
+		var ordem_id = $$(this).data('ordem');
 
 		var data = new Date();		
 
@@ -384,14 +384,14 @@ function _init_tarefas(data) {
 
 	    	// if(navigator.connection.type == "none") {
 
-				fileObj.atualizacao.push({ 
-											"Cod" : 2,
-											"item": id,
-											"nome": $$("#pod_entrega_coleta_nome").val(),
-											"doc": $$("#pod_entrega_coleta_doc").val(),
-											"data": $$("#pod_entrega_coleta_data").val(),
-											"hora": $$("#pod_entrega_coleta_hora").val(),
-											});
+				// fileObj.atualizacao.push({ 
+				// 							"Cod" : 2,
+				// 							"item": id,
+				// 							"nome": $$("#pod_entrega_coleta_nome").val(),
+				// 							"doc": $$("#pod_entrega_coleta_doc").val(),
+				// 							"data": $$("#pod_entrega_coleta_data").val(),
+				// 							"hora": $$("#pod_entrega_coleta_hora").val(),
+				// 							});
 
 				$$.each(data.awb_lista, function (index, value_j) {
 
@@ -437,7 +437,7 @@ function _init_tarefas(data) {
 	$$('.cod_disp_coleta_entrega').on('click', function (e) {	
 
 		var id = this.id.substring(24);
-		var ordem_id = this.data('ordem');
+		var ordem_id = $$(this).data('ordem');
 
 		var form = '<div class="item-inner">\
 						<div class="item-input">\
